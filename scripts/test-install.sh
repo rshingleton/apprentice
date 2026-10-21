@@ -10,7 +10,7 @@ tmp="$(cd "$(mktemp -d)" && pwd -P)"
 trap 'rm -rf "$tmp"' EXIT
 export HOME="$tmp/home"
 mkdir -p "$HOME"
-skills=(mentor-plan mentor-scaffold mentor-hint mentor-diagnose mentor-review)
+skills=(mentor-plan mentor-scaffold mentor-hint mentor-diagnose mentor-review mentor-tutor)
 
 fail() { echo "FAIL: $*" >&2; exit 1; }
 linked() { [ -L "$1" ] && [ "$(readlink "$1")" = "$root/skills/$(basename "$1")" ]; }

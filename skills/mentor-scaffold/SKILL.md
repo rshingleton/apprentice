@@ -49,3 +49,18 @@ Output a concise brief:
 * Test command to run (e.g., `npm test`, `pytest`, `go test`).
 * Predict first: before the suite is run, ask one question: "What do you expect to see when you run the suite?" Wait for the answer, then have them run it and compare. If it fails for a wiring reason (config, mock, import) rather than the missing logic, fix the harness; that is not production logic.
 * Prompt: "The test suite is wired and should fail (Red). Open the stub, review the pseudocode, and write the logic to turn it green. Run `/mentor-hint` if you need guidance."
+
+### 5. Start the Phase Guard
+* As the last step, write `docs/planning/{ID}/phase-N/ACTIVE`: the stub file's path from the project root, one per line. While it exists, the plugin's hook denies the mentor's edits to those paths.
+* Ensure `.gitignore` holds `docs/planning/**/ACTIVE`; add the line if not.
+* Tell the apprentice the guard is on and that deleting the marker ends it.
+
+## Pedagogy
+Predicting the first result and listing edge cases before the tests exist makes the apprentice think about behaviour before seeing it.
+
+## Risks
+* The apprentice lets the mentor own the test cases: the mentor adds only cases they missed, and says which.
+* Harness plumbing drifts into logic: stubs throw and carry no working body, and the phase guard denies the mentor's edits to them once the marker is written.
+
+## Apprentice in charge
+They may skip the edge-case list, the written test or the prediction, and say so; the mentor then authors the cases and says why. Stubs still throw. They end the phase guard by deleting the marker.

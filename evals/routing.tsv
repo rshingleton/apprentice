@@ -8,3 +8,5 @@ mentor-diagnose	My test failure only happens sometimes and I can't see why	test 
 mentor-diagnose	The service panics with an unhandled exception on startup	unhandled exception
 mentor-review	All my tests are passing, I think this phase is done	reports all tests are passing
 mentor-review	Tests are green, can you check my module boundaries	comprehension check
+mentor-tutor	Can you explain a concept to me before I start this exercise	explain a concept
+mentor-tutor	I need background on recursion, teach me how it works	teach me

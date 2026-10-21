@@ -35,6 +35,17 @@ for s in "${skills[@]}"; do
   [ -n "$(field "$f" description)" ] || fail "$s: description is empty"
 done
 
+# 1b. anatomy: the description says when to use the skill, the file stays short, and it states its pedagogy, risks and who is in charge
+for s in "${skills[@]}"; do
+  f="$root/skills/$s/SKILL.md"
+  [ -f "$f" ] || continue
+  case "$(field "$f" description)" in *"Use when"*) ;; *) fail "anatomy: $s description has no 'Use when' clause" ;; esac
+  [ "$(wc -l < "$f")" -lt 100 ] || fail "anatomy: $s SKILL.md is 100 lines or more"
+  for h in Pedagogy Risks "Apprentice in charge"; do
+    grep -q "^## $h\$" "$f" || fail "anatomy: $s has no '$h' section"
+  done
+done
+
 # 2. routing: every skill has cases; each trigger is in its description and in no other
 while IFS=$'\t' read -r skill prompt trigger; do
   [ -n "$skill" ] || continue
@@ -57,30 +68,50 @@ done
 for s in "${skills[@]}"; do
   dir="$evals/scenarios/$s"
   [ -f "$dir/ask-for-answer.md" ] || fail "scenarios: $s has no ask-for-answer scenario"
-  case "$s" in mentor-hint|mentor-scaffold|mentor-diagnose)
+  case "$s" in mentor-hint|mentor-scaffold|mentor-diagnose|mentor-tutor)
     [ -f "$dir/typical-mistake.md" ] || fail "scenarios: $s has no typical-mistake scenario" ;;
   esac
   [ "$s" != mentor-hint ] || [ -f "$dir/misconception.md" ] || fail "scenarios: $s has no misconception scenario"
   [ "$s" != mentor-plan ] || [ -f "$dir/habits.md" ] || fail "scenarios: $s has no habits scenario"
   [ "$s" != mentor-scaffold ] || [ -f "$dir/cases.md" ] || fail "scenarios: $s has no cases scenario"
+  [ "$s" != mentor-hint ] || [ -f "$dir/handoff.md" ] || fail "scenarios: $s has no handoff scenario"
+  [ "$s" != mentor-tutor ] || [ -f "$dir/teach.md" ] || fail "scenarios: $s has no teach scenario"
+  [ "$s" != mentor-tutor ] || [ -f "$dir/quiz.md" ] || fail "scenarios: $s has no quiz scenario"
+  [ "$s" != mentor-tutor ] || [ -f "$dir/challenge.md" ] || fail "scenarios: $s has no challenge scenario"
+  [ "$s" != mentor-tutor ] || [ -f "$dir/audit.md" ] || fail "scenarios: $s has no audit scenario"
+  [ "$s" != mentor-tutor ] || [ -f "$dir/simulate.md" ] || fail "scenarios: $s has no simulate scenario"
+  case "$s" in mentor-hint|mentor-review)
+    [ -f "$dir/journal.md" ] || fail "scenarios: $s has no journal scenario" ;;
+  esac
+  case "$s" in mentor-scaffold|mentor-review)
+    [ -f "$dir/guard.md" ] || fail "scenarios: $s has no guard scenario" ;;
+  esac
   case "$s" in mentor-scaffold|mentor-diagnose)
     [ -f "$dir/predict.md" ] || fail "scenarios: $s has no predict scenario" ;;
   esac
   if [ "$s" = mentor-review ]; then
-    for k in great middling poor; do [ -f "$dir/$k.md" ] || fail "scenarios: $s has no $k scenario"; done
+    for k in great middling poor teach-back; do [ -f "$dir/$k.md" ] || fail "scenarios: $s has no $k scenario"; done
   fi
 done
 for f in "$evals"/scenarios/*/*.md; do
   [ -f "$f" ] || continue
   kind="$(basename "$f" .md)"; skill="$(basename "$(dirname "$f")")"
   [ "$(field "$f" skill)" = "$skill" ] || fail "scenarios: $f skill does not match its directory"
-  case "$kind" in ask-for-answer|typical-mistake|predict|misconception|cases|habits|great|middling|poor) ;; *) fail "scenarios: $f has an unknown kind" ;; esac
+  case "$kind" in ask-for-answer|typical-mistake|predict|misconception|cases|habits|journal|teach-back|handoff|teach|quiz|challenge|audit|simulate|guard|great|middling|poor) ;; *) fail "scenarios: $f has an unknown kind" ;; esac
   [ "$(field "$f" kind)" = "$kind" ] || fail "scenarios: $f kind does not match its filename"
   for sec in Script Expect; do
     awk -v sec="## $sec" '$0 == sec { on = 1; next } /^## / { on = 0 } on && NF { n++ } END { exit n == 0 }' "$f" \
       || fail "scenarios: $f has an empty or missing $sec section"
   done
 done
+
+# 3b. the tutor routes each mode argument to its own file
+if [ -d "$root/skills/mentor-tutor" ]; then
+  for m in TEACH QUIZ CHALLENGE AUDIT SIMULATE; do
+    [ -f "$root/skills/mentor-tutor/$m.md" ] || fail "tutor: mentor-tutor has no $m.md mode file"
+    grep -q "($m.md)" "$root/skills/mentor-tutor/SKILL.md" || fail "tutor: mentor-tutor SKILL.md does not link $m.md"
+  done
+fi
 
 # 4. transcript fixtures: good ones pass the one-question check, bad ones fail it
 good=0; bad=0

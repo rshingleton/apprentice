@@ -58,6 +58,79 @@ rm "$tmp/repo/evals/scenarios/mentor-plan/habits.md"
 out="$(run)" && fail "a missing habits scenario should fail"
 grep -q "no habits scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 
+# 4e2. a missing journal scenario fails, for the hint and the review skill
+for k in hint review; do
+  fresh
+  rm "$tmp/repo/evals/scenarios/mentor-$k/journal.md"
+  out="$(run)" && fail "a missing mentor-$k journal scenario should fail"
+  grep -q "mentor-$k has no journal scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+done
+
+# 4e3. a missing teach-back scenario fails
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-review/teach-back.md"
+out="$(run)" && fail "a missing teach-back scenario should fail"
+grep -q "no teach-back scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+
+# 4e4. a missing handoff scenario fails
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-hint/handoff.md"
+out="$(run)" && fail "a missing handoff scenario should fail"
+grep -q "no handoff scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+
+# 4e5. a missing tutor teach scenario and a missing tutor mode file fail
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/teach.md"
+out="$(run)" && fail "a missing teach scenario should fail"
+grep -q "no teach scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/quiz.md"
+out="$(run)" && fail "a missing quiz scenario should fail"
+grep -q "no quiz scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/challenge.md"
+out="$(run)" && fail "a missing challenge scenario should fail"
+grep -q "no challenge scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/audit.md"
+out="$(run)" && fail "a missing audit scenario should fail"
+grep -q "no audit scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/simulate.md"
+out="$(run)" && fail "a missing simulate scenario should fail"
+grep -q "no simulate scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
+rm "$tmp/repo/skills/mentor-tutor/QUIZ.md"
+out="$(run)" && fail "a missing tutor mode file should fail"
+grep -q "no QUIZ.md mode file" <<<"$out" || fail "the failure should name the file: $out"
+
+fresh
+sed -i.bak 's/(QUIZ.md)/(quiz)/' "$tmp/repo/skills/mentor-tutor/SKILL.md"
+out="$(run)" && fail "an unlinked tutor mode file should fail"
+grep -q "does not link QUIZ.md" <<<"$out" || fail "the failure should name the link: $out"
+
+# 4e6. a missing guard scenario fails, for the scaffold and the review skill
+for k in scaffold review; do
+  fresh
+  rm "$tmp/repo/evals/scenarios/mentor-$k/guard.md"
+  out="$(run)" && fail "a missing mentor-$k guard scenario should fail"
+  grep -q "mentor-$k has no guard scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+done
+
+# 4f. a skill missing a required section, a skill at 100 lines and a description without Use when each fail the anatomy check
+fresh
+sed -i.bak '/^## Risks$/d' "$tmp/repo/skills/mentor-review/SKILL.md"
+out="$(run)" && fail "a skill with no Risks section should fail"
+grep -q "anatomy: mentor-review has no 'Risks' section" <<<"$out" || fail "the failure should name the section: $out"
+fresh
+while [ "$(wc -l < "$tmp/repo/skills/mentor-diagnose/SKILL.md")" -lt 100 ]; do echo "filler" >> "$tmp/repo/skills/mentor-diagnose/SKILL.md"; done
+out="$(run)" && fail "a 100-line skill should fail"
+grep -q "anatomy: mentor-diagnose SKILL.md is 100 lines or more" <<<"$out" || fail "the failure should name the length: $out"
+fresh
+sed -i.bak 's/Use when/Reach for it when/' "$tmp/repo/skills/mentor-plan/SKILL.md"
+out="$(run)" && fail "a description without Use when should fail"
+grep -q "anatomy: mentor-plan description has no 'Use when' clause" <<<"$out" || fail "the failure should name the description: $out"
+
 # 5. no bad fixtures, a missing typical-mistake scenario and a fenced "Mentor:" line each fail
 fresh
 rm "$tmp/repo"/evals/fixtures/bad-*.md
