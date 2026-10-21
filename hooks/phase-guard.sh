@@ -8,8 +8,8 @@
 # any failure allows the call: this guard never blocks work by breaking.
 #
 # Tool input fields: Edit and Write carry file_path, NotebookEdit carries
-# notebook_path (documented); MultiEdit is read as file_path and is not confirmed
-# in a live session.
+# notebook_path (both seen in a live session). MultiEdit does not exist in the
+# build tested; it is read as file_path, unconfirmed.
 #
 # shortcut: paths are matched as given, with no ../ or symlink normalisation, and
 # Bash writes are not seen; upgrade if a bypass is found in practice.
