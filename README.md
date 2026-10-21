@@ -25,7 +25,7 @@ Tools that hand over complete implementations turn junior developers into review
 | `/mentor-hint` | Implementation | Tiered help: Level 1 concept, Level 2 pseudocode, Level 3 micro-step decomposition, Level 4 brief for a human senior |
 | `/mentor-diagnose` | Implementation | Walks you through a five-step debugging loop without patching the bug for you |
 | `/mentor-review` | Verification | Runs tests, lint and type-check, checks tests were not weakened, audits module design, asks one comprehension question |
-| `/mentor-tutor` | Any stage | Teaches a concept through leading questions and a teach-back, never the task's answer: `/mentor-tutor <mode> [topic]`, default teach; quiz quizzes them on their own code, with predict-the-output answers checked by running it; challenge questions their plan with devil's-advocate and prospective-hindsight questions, and has them accept or reject each suggestion with a reason; audit has them find planted flaws in exercise code and prove each with a failing test; simulate is not built yet |
+| `/mentor-tutor` | Any stage | Teaches a concept through leading questions and a teach-back, never the task's answer: `/mentor-tutor <mode> [topic]`, default teach; quiz quizzes them on their own code, with predict-the-output answers checked by running it; challenge questions their plan with devil's-advocate and prospective-hindsight questions, and has them accept or reject each suggestion with a reason; audit has them find planted flaws in exercise code and prove each with a failing test; simulate role-plays an engineering scenario (stakeholder, incident or hostile review) with a consequential choice and a debrief on the concept applied |
 
 ## Install
 

@@ -26,7 +26,7 @@ Invocation: `/mentor-tutor <mode> [topic]`. The mode is the first word. A first 
 | quiz | [QUIZ.md](QUIZ.md) | built |
 | challenge | [CHALLENGE.md](CHALLENGE.md) | built |
 | audit | [AUDIT.md](AUDIT.md) | built |
-| simulate | [SIMULATE.md](SIMULATE.md) | not built yet |
+| simulate | [SIMULATE.md](SIMULATE.md) | built |
 
 1. Read the learner journal Profile at `$APPRENTICE_JOURNAL`, else `~/.apprentice/journal.md`, for the apprentice's level and prior knowledge. Check: a mode file's intake asks only what the Profile leaves out. With no Profile it asks for the missing facts, one question per turn, and uses the answers for this session only. The tutor writes no journal line.
 2. Pick the mode from the first word; read that mode's file and follow it. Check: the reply names the mode in play.

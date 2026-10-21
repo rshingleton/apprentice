@@ -96,6 +96,10 @@ rm "$tmp/repo/evals/scenarios/mentor-tutor/audit.md"
 out="$(run)" && fail "a missing audit scenario should fail"
 grep -q "no audit scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/simulate.md"
+out="$(run)" && fail "a missing simulate scenario should fail"
+grep -q "no simulate scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
 rm "$tmp/repo/skills/mentor-tutor/QUIZ.md"
 out="$(run)" && fail "a missing tutor mode file should fail"
 grep -q "no QUIZ.md mode file" <<<"$out" || fail "the failure should name the file: $out"
