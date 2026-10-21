@@ -15,4 +15,6 @@ Domain terms used across the skills and docs.
 | **Hint ladder** | The three escalating levels of help: Concept, Pseudocode, Decomposition. |
 | **Comprehension gate** | The single conceptual question `/mentor-review` asks before a phase closes. |
 | **Deep module** | A module whose small, stable interface hides substantial internal complexity. |
+| **Routing case** | A sample request in `evals/routing.tsv` with the trigger phrase that must route it to one skill's description and no other. |
+| **Scenario** | A scripted apprentice exchange in `evals/scenarios/` with the behaviour the mentor must and must not show. |
 | **Accordion model** | Expand detail in `docs/planning/{ID}/`, focus in the active file, then compress to an archive and ADRs. |

@@ -1,0 +1,10 @@
+mentor-plan	I need to scope a new task: add CSV export to the reports page	scoping a new task
+mentor-plan	Help me plan this epic and break it into slices	new task or epic
+mentor-scaffold	The plan is approved, start execution on phase 1	starting execution on a task phase
+mentor-scaffold	Set up the test harness and empty stubs for the next phase	empty interface stubs
+mentor-hint	I'm stuck on an error and don't know how to approach this algorithm step	stuck on an error
+mentor-hint	I don't get how this language feature works, give me a nudge	language mechanic
+mentor-diagnose	My test failure only happens sometimes and I can't see why	test failure
+mentor-diagnose	The service panics with an unhandled exception on startup	unhandled exception
+mentor-review	All my tests are passing, I think this phase is done	reports all tests are passing
+mentor-review	Tests are green, can you check my module boundaries	comprehension check

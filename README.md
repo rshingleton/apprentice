@@ -60,6 +60,10 @@ It leaves any existing entry that is not its own link alone unless `--force` is 
 
 Use the plugin or the installer, not both.
 
+## Evals
+
+`evals/run.sh` checks every skill offline: its name and description, routing cases (each trigger phrase is in its own skill's description and in no other), scripted scenarios, and the one-question-per-turn rule on transcript fixtures. It exits non-zero on any failure. `evals/test-evals.sh` proves it fails on a broken description, a two-question transcript and a missing scenario. Scenarios are scripted expectations for a run of the skill; they are not executed against a model.
+
 ## Usage
 
 1. Run `/mentor-plan` with the task or epic and answer its questions.
@@ -77,6 +81,7 @@ docs/planning/    active task plans, one directory per ID
 docs/archive/     completed plans, moved to docs/archive/planning/{ID}/
 skills/           the five mentor-* skills
 scripts/          install.sh and its test
+evals/            offline skill checks: routing cases, scenarios, transcript fixtures
 .claude-plugin/   plugin and marketplace manifests
 ```
 
