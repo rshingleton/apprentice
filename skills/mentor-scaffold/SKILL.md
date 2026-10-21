@@ -29,7 +29,7 @@ junior developer can dive straight into core algorithmic and business logic.
   * Happy path input/output.
   * Edge cases (null/nil, empty arrays, out-of-range bounds).
   * Expected errors or rejected promises.
-* Run the test suite once to confirm it cleanly fails on missing functionality (Red).
+* Do not run the suite to show results: the apprentice predicts and makes the first run (Red) in step 4.
 
 ### 3. Stub the Implementation File
 * Create the target source file with typed function signatures and class definitions.
@@ -45,4 +45,5 @@ junior developer can dive straight into core algorithmic and business logic.
 Output a concise brief:
 * Target file path and line numbers to edit.
 * Test command to run (e.g., `npm test`, `pytest`, `go test`).
-* Prompt: "The test suite is wired and currently failing (Red). Open the stub, review the pseudocode, and write the logic to turn it green. Run `/mentor-hint` if you need guidance."
+* Predict first: before the suite is run, ask one question: "What do you expect to see when you run the suite?" Wait for the answer, then have them run it and compare. If it fails for a wiring reason (config, mock, import) rather than the missing logic, fix the harness; that is not production logic.
+* Prompt: "The test suite is wired and should fail (Red). Open the stub, review the pseudocode, and write the logic to turn it green. Run `/mentor-hint` if you need guidance."

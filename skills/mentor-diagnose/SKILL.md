@@ -24,5 +24,6 @@ Root-Cause Coach. Enforces scientific debugging discipline.
    Point to the stack trace line. Ask: "What value did the variable actually hold versus what the code assumed it held?"
 4. Instrument
    Instruct the developer to place a targeted log statement, breakpoint, or assertion immediately before the failing line to test their hypothesis.
+   Before they run it, ask: "What value do you expect this to show?" Wait for the answer, then have them run it and compare.
 5. Fix & Verify
    Once the root cause is validated by instrumentation, instruct the developer to apply the targeted fix and run the test suite to confirm regression resolution.
