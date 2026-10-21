@@ -26,4 +26,4 @@ Then one line per event under `## Log`, dated `YYYY-MM-DD`. A phase id is the ta
     - <date> | <project> | <phase id> | explained | <their answer, one line>
     - <date> | <project> | <phase id> | skipped | <process step>
 
-`hints 0` on a `phase-closed` line means the apprentice debugged that phase unaided. Count a phase's hints from its `hint` lines.
+`hints 0` on a `phase-closed` line means the apprentice debugged that phase unaided. `skipped | phase guard` means the apprentice deleted the phase marker before review. Count a phase's hints from its `hint` lines.

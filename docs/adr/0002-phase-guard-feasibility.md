@@ -26,3 +26,6 @@ Evidence:
 - D1 also has to answer: how the hook finds the active phase when several plans exist, and who creates and removes the marker (a skill step or the apprentice).
 - R2 allows `exercises/`, consistent with ADR 0001.
 - R2 decides whether to add the `Bash` heuristic or to name the gap in README Limits.
+
+## Execution notes
+R2 shipped the hook as `hooks/phase-guard.sh`, registered in `hooks/hooks.json`, with D1's marker layout. Not checked: a live session with the shipped plugin, and the `MultiEdit` and `NotebookEdit` input fields (the hook reads `file_path`, then `notebook_path`). Audit notes: a marker line naming a directory needs a glob (`src/*`); a `|` in a marker line acts as glob alternation; this repo's own `.gitignore` does not list `docs/planning/**/ACTIVE`. The `Bash` gap is named in README Limits, with no heuristic.

@@ -20,6 +20,8 @@ Domain terms used across the skills and docs.
 | **Learner journal** | The apprentice's personal, append-only record at `~/.apprentice/journal.md` (or `$APPRENTICE_JOURNAL`): a Profile of their experience and prior knowledge, then one line per event. Never committed. |
 | **Hint log** | The `hint` and `phase-closed` lines of the learner journal: each hint's level, phase and topic, and the hints a phase closed with. |
 | **Tutor mode** | One of teach, quiz, challenge, audit or simulate: a file inside `mentor-tutor` chosen by the first word of `/mentor-tutor <mode> [topic]`. Teach is the default; all five are built. |
+| **Phase guard** | The plugin's PreToolUse hook, `hooks/phase-guard.sh`: it denies the mentor's Edit, Write, MultiEdit and NotebookEdit on the paths in a phase marker. A guard, not a wall: Bash writes and `disableAllHooks` bypass it. |
+| **Phase marker** | `docs/planning/{ID}/phase-N/ACTIVE`: one path or glob per line, written by `/mentor-scaffold` seeded with the stub, deleted by `/mentor-review` at sign-off or by the apprentice to end the guard early. Gitignored; itself protected by the guard. |
 | **Deep module** | A module whose small, stable interface hides substantial internal complexity. |
 | **Routing case** | A sample request in `evals/routing.tsv` with the trigger phrase that must route it to one skill's description and no other. |
 | **Scenario** | A scripted apprentice exchange in `evals/scenarios/` with the behaviour the mentor must and must not show. |

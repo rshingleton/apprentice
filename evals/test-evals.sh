@@ -109,6 +109,14 @@ sed -i.bak 's/(QUIZ.md)/(quiz)/' "$tmp/repo/skills/mentor-tutor/SKILL.md"
 out="$(run)" && fail "an unlinked tutor mode file should fail"
 grep -q "does not link QUIZ.md" <<<"$out" || fail "the failure should name the link: $out"
 
+# 4e6. a missing guard scenario fails, for the scaffold and the review skill
+for k in scaffold review; do
+  fresh
+  rm "$tmp/repo/evals/scenarios/mentor-$k/guard.md"
+  out="$(run)" && fail "a missing mentor-$k guard scenario should fail"
+  grep -q "mentor-$k has no guard scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+done
+
 # 4f. a skill missing a required section, a skill at 100 lines and a description without Use when each fail the anatomy check
 fresh
 sed -i.bak '/^## Risks$/d' "$tmp/repo/skills/mentor-review/SKILL.md"

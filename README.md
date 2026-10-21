@@ -10,6 +10,7 @@ Tools that hand over complete implementations turn junior developers into review
 - **Automated scaffolding:** test suites, fixtures, mocks, assertion matrices and typed stubs are generated for you.
 - **Hands-on execution:** you write the code that makes the failing tests pass.
 - **Socratic guidance:** help is metered through a ladder (Concept, Pseudocode, Decomposition, then a brief for a human), never a full solution.
+- **Phase guard:** while a phase is active, a plugin hook denies the AI's edits to the stub and the other listed production paths; tests, exercises and docs stay open.
 - **Comprehension gates:** before a phase closes, you answer one conceptual question about complexity, edge cases or trade-offs.
 
 ## Lifecycle
@@ -76,7 +77,7 @@ Use the plugin or the installer, not both.
 ## Limits
 
 - **Privacy:** do not paste secrets, credentials or proprietary code into a session where your organisation's policy forbids sharing them with a model.
-- **Prompt-enforced:** the rule that the AI writes no production logic is carried by the skills' instructions. Nothing in the tool blocks an edit yet.
+- **Phase guard:** with the plugin installed, a hook denies the mentor's `Edit`, `Write`, `MultiEdit` and `NotebookEdit` on the paths in an active phase marker (`docs/planning/{ID}/phase-N/ACTIVE`, written by `/mentor-scaffold`, deleted by `/mentor-review`). It is a guard, not a wall: writes made through `Bash` (`sed -i`, redirects) are not seen; `disableAllHooks` turns it off; it needs `jq` and allows every edit without it; you can end it by deleting the marker; and the installer does not carry it, only the plugin. Everywhere else the no-production-logic rule is carried by the skills' instructions.
 - **Not run against a model:** the evals check structure and scripted expectations only, so a skill can pass them and still behave differently on a given model.
 - **Learner journal:** `mentor-hint` and `mentor-review` keep a personal journal of your level, hints and answers at `~/.apprentice/journal.md` (or `$APPRENTICE_JOURNAL`). It sits outside every repository, is never committed, and deleting the file resets it.
 - **Model output can be wrong:** hints and reviews may be mistaken or confidently misleading. Check them against the code and the documentation.
