@@ -25,7 +25,9 @@ junior developer can dive straight into core algorithmic and business logic.
 ### 2. Scaffold Automated Test Suite
 * Create or update the test specification file following repository conventions.
 * Wire up all fixtures, runner configuration, and external service mocks automatically.
-* Author tests verifying:
+* Own the cases first: before authoring any test, ask one question: "Which edge cases and failure modes should these tests cover?" Wait for the answer.
+* Have the apprentice write at least one test themselves, from their own list. Review it; do not rewrite it.
+* Author only the cases they missed, and say which ones, covering:
   * Happy path input/output.
   * Edge cases (null/nil, empty arrays, out-of-range bounds).
   * Expected errors or rejected promises.
