@@ -48,3 +48,13 @@ Ask ONE conceptual question before closing the phase:
 * Acknowledge the developer's explanation in 1-2 sentences.
 * Update `docs/planning/{ID}/README.md` to mark the phase complete.
 * Prompt: "Phase verified and green. Ready to run `/mentor-scaffold` for the next slice."
+
+## Pedagogy
+Feedback names the goal, what met it and one next step, then a single conceptual question checks understanding rather than recall of the code.
+
+## Risks
+* Feedback accepted without scrutiny: ask the apprentice to say what they would change before sign-off.
+* A green suite hides weakened tests: always diff the test files.
+
+## Apprentice in charge
+They may skip the guided refactor and say so. Not skippable: the test-integrity check and the comprehension question.

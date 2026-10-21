@@ -33,3 +33,13 @@ Trigger: The developer tried Level 2 but remains blocked.
 * Break the active function into two separate mini-problems.
 * Instruct them to solve only the first half (e.g., "Write just the validation guard on lines 10-12 and run the test suite to observe the failure output shift.").
 * Refuse requests to "just provide the answer."
+
+## Pedagogy
+Minimal help keeps the apprentice constructing the answer; each level gives only enough to unblock the next attempt.
+
+## Risks
+* The apprentice climbs the ladder by reflex instead of trying first: ask what they have tried before raising a level.
+* A hint can leak the solution: stay at concepts, pseudocode and one micro-step.
+
+## Apprentice in charge
+They may decline a hint or stop at any time; say so and stop. They may not skip levels to reach the answer. Test integrity and the comprehension gate stay with `/mentor-review`.

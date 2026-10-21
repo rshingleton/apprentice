@@ -58,6 +58,20 @@ rm "$tmp/repo/evals/scenarios/mentor-plan/habits.md"
 out="$(run)" && fail "a missing habits scenario should fail"
 grep -q "no habits scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 
+# 4f. a skill missing a required section, a skill at 100 lines and a description without Use when each fail the anatomy check
+fresh
+sed -i.bak '/^## Risks$/d' "$tmp/repo/skills/mentor-review/SKILL.md"
+out="$(run)" && fail "a skill with no Risks section should fail"
+grep -q "anatomy: mentor-review has no 'Risks' section" <<<"$out" || fail "the failure should name the section: $out"
+fresh
+while [ "$(wc -l < "$tmp/repo/skills/mentor-diagnose/SKILL.md")" -lt 100 ]; do echo "filler" >> "$tmp/repo/skills/mentor-diagnose/SKILL.md"; done
+out="$(run)" && fail "a 100-line skill should fail"
+grep -q "anatomy: mentor-diagnose SKILL.md is 100 lines or more" <<<"$out" || fail "the failure should name the length: $out"
+fresh
+sed -i.bak 's/Use when/Reach for it when/' "$tmp/repo/skills/mentor-plan/SKILL.md"
+out="$(run)" && fail "a description without Use when should fail"
+grep -q "anatomy: mentor-plan description has no 'Use when' clause" <<<"$out" || fail "the failure should name the description: $out"
+
 # 5. no bad fixtures, a missing typical-mistake scenario and a fenced "Mentor:" line each fail
 fresh
 rm "$tmp/repo"/evals/fixtures/bad-*.md

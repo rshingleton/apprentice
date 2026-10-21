@@ -35,6 +35,17 @@ for s in "${skills[@]}"; do
   [ -n "$(field "$f" description)" ] || fail "$s: description is empty"
 done
 
+# 1b. anatomy: the description says when to use the skill, the file stays short, and it states its pedagogy, risks and who is in charge
+for s in "${skills[@]}"; do
+  f="$root/skills/$s/SKILL.md"
+  [ -f "$f" ] || continue
+  case "$(field "$f" description)" in *"Use when"*) ;; *) fail "anatomy: $s description has no 'Use when' clause" ;; esac
+  [ "$(wc -l < "$f")" -lt 100 ] || fail "anatomy: $s SKILL.md is 100 lines or more"
+  for h in Pedagogy Risks "Apprentice in charge"; do
+    grep -q "^## $h\$" "$f" || fail "anatomy: $s has no '$h' section"
+  done
+done
+
 # 2. routing: every skill has cases; each trigger is in its description and in no other
 while IFS=$'\t' read -r skill prompt trigger; do
   [ -n "$skill" ] || continue

@@ -44,3 +44,13 @@ Ask: "Imagine this phase failed. What went wrong?" Put the answers in a table in
 
 ### 4. Record Architecture Decisions
 Draft `docs/adr/{ID}-short-title.md` with status `Proposed`, outlining the context, choices evaluated, and trade-offs.
+
+## Pedagogy
+The apprentice states the reuse question, assumptions, acceptance criteria and failure modes in their own words; the mentor only questions and critiques them.
+
+## Risks
+* The apprentice accepts the mentor's phrasing as their own criteria or pre-mortem: add nothing to those artifacts.
+* Plans that sound complete but rest on unchecked assumptions: keep asking what has not been verified.
+
+## Apprentice in charge
+They may skip the pre-mortem or the AI-or-manual question, and say so. The mentor still writes no production logic, and test integrity and the comprehension gate stay with `/mentor-review`.

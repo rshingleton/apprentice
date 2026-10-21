@@ -62,7 +62,7 @@ Use the plugin or the installer, not both.
 
 ## Evals
 
-`evals/run.sh` checks every skill offline: its name and description, routing cases (each trigger phrase is in its own skill's description and in no other), scripted scenarios, and the one-question-per-turn rule on transcript fixtures. It exits non-zero on any failure. `evals/test-evals.sh` proves it fails on a broken description, a two-question transcript and a missing scenario. Scenarios are scripted expectations for a run of the skill; they are not executed against a model.
+`evals/run.sh` checks every skill offline: its name and description, routing cases (each trigger phrase is in its own skill's description and in no other), scripted scenarios, the one-question-per-turn rule on transcript fixtures, and each skill's anatomy (a "Use when" description, under 100 lines, and Pedagogy, Risks and Apprentice in charge sections). It exits non-zero on any failure. `evals/test-evals.sh` proves it fails on a broken description, a two-question transcript and a missing scenario. Scenarios are scripted expectations for a run of the skill; they are not executed against a model.
 
 ## Usage
 
@@ -71,6 +71,23 @@ Use the plugin or the installer, not both.
 3. Stuck? Run `/mentor-hint`, or `/mentor-diagnose` for a failing test.
 4. When the tests pass, run `/mentor-review`. Answer its question to close the phase.
 5. Repeat `/mentor-scaffold` for the next slice. Commit yourself; the skills never commit.
+
+## Limits
+
+- **Privacy:** do not paste secrets, credentials or proprietary code into a session where your organisation's policy forbids sharing them with a model.
+- **Prompt-enforced:** the rule that the AI writes no production logic is carried by the skills' instructions. Nothing in the tool blocks an edit yet.
+- **Not run against a model:** the evals check structure and scripted expectations only, so a skill can pass them and still behave differently on a given model.
+- **Model output can be wrong:** hints and reviews may be mistaken or confidently misleading. Check them against the code and the documentation.
+- **You are in charge:** you may skip a process step or end a session. Test integrity and the comprehension question stay in place.
+
+## Credits
+
+The skills borrow ideas, rewritten in this repo's words, from:
+
+- Mollick, E. and Mollick, L. (2023). [Assigning AI: Seven Approaches for Students, with Prompts](https://papers.ssrn.com/abstract=4475995): mentor feedback, leading questions, premortems, adversarial testing of prompts and learner autonomy.
+- [microsoft/prompts-for-edu](https://github.com/microsoft/prompts-for-edu): the tutor, quiz and devil's-advocate prompt shapes the paper builds on.
+
+Notes on these and other sources are in [docs/research/learning-sources.md](docs/research/learning-sources.md).
 
 ## Repository layout
 
