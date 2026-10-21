@@ -25,7 +25,7 @@ Exit: with an active phase, an attempted AI edit to a production file is denied 
 
 | Slice | Kind | Delivers | Covers | Blocked by | Verify | Risk | Status |
 |-------|------|----------|--------|------------|--------|------|--------|
-| R1 | spike | Can a Claude Code hook deny edits by path using a phase marker? | G1 | none | Answer recorded in an ADR; throwaway code removed | high | |
+| R1 | spike | Can a Claude Code hook deny edits by path using a phase marker? | G1 | none | Answer recorded in an ADR; throwaway code removed | high | shipped 2026-10-21 phase-guard-spike |
 | R2 | build | Phase-guard hook shipped in the plugin | G1 | R1 (feasibility), D1 (marker, production-path rule) | Active phase: edit to `src/` denied, to the test file and `exercises/` allowed; no phase: edits allowed | high | |
 
 ### M2: Make them think
@@ -112,3 +112,4 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 - 2026-10-21: R14 shipped as `tutor-quiz`: `/mentor-tutor quiz` seeds 3 to 5 one-at-a-time questions from the journal Log and the apprentice's own code, takes every predict-the-output key from a real run, and explains each answer; `quiz` scenario required for `mentor-tutor`.
 - 2026-10-21: R15 shipped as `tutor-challenge`: `/mentor-tutor challenge` asks devil's-advocate and prospective-hindsight questions on the apprentice's plan, never answers, and records each accept or reject with the apprentice's reason in a chat table; `challenge` scenario required for `mentor-tutor`.
 - 2026-10-21: R16 shipped as `tutor-audit`: `/mentor-tutor audit` is gated to concepts from a `phase-closed` phase, plants 2 to 3 flaws in `exercises/`, has the apprentice prove each with a failing test of their own, and checks the key by running; ADR 0001 records D5; `audit` scenario required for `mentor-tutor`.
+- 2026-10-21: R1 shipped as `phase-guard-spike`: ADR 0002 records that a plugin PreToolUse hook can deny production-path edits while a phase marker exists (checked by script and in a live session, bypass mode included), with limits: Bash writes bypass an Edit matcher, `disableAllHooks` turns the guard off, `MultiEdit` and `NotebookEdit` inputs untested. D1 now also asks how the hook finds the active phase and who owns the marker.
