@@ -26,7 +26,7 @@ Exit: with an active phase, an attempted AI edit to a production file is denied 
 | Slice | Kind | Delivers | Covers | Blocked by | Verify | Risk | Status |
 |-------|------|----------|--------|------------|--------|------|--------|
 | R1 | spike | Can a Claude Code hook deny edits by path using a phase marker? | G1 | none | Answer recorded in an ADR; throwaway code removed | high | shipped 2026-10-21 phase-guard-spike |
-| R2 | build | Phase-guard hook shipped in the plugin | G1 | R1 (feasibility), D1 (marker, production-path rule) | Active phase: edit to `src/` denied, to the test file and `exercises/` allowed; no phase: edits allowed | high | |
+| R2 | build | Phase-guard hook shipped in the plugin: a PreToolUse hook that denies Edit and Write to the paths listed in any `docs/planning/{ID}/phase-N/ACTIVE` marker (and to the markers themselves), allows every other path, and fails open; `mentor-scaffold` writes the marker as its last step, seeded with the stub file, and ensures `docs/planning/**/ACTIVE` is gitignored; `mentor-review` deletes it at sign-off, journaling a `skipped` line when it is already gone; README Limits name the Bash gap and `disableAllHooks` | G1 | R1 (ADR 0002) | Active marker listing `src/a.js`: Edit to `src/a.js` and to the marker denied, to the test file and `exercises/` allowed; no marker: all edits allowed; scaffold and review scenarios show the marker written and removed; `MultiEdit` and `NotebookEdit` input fields confirmed with a dump hook | high | |
 
 ### M2: Make them think
 Exit: a scripted run of the sample kata shows the predict prompt, the case-listing prompt, a three-part review with a revise pass, and the evals pass.
@@ -62,7 +62,6 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 | R17 | build | Tutor mode `SIMULATE.md`: engineering scenarios (stakeholder clarification, production incident, hostile code review); the mentor never plays the apprentice; a consequential choice after four exchanges; a debrief that asks which concept was applied | G9 | R13 (tutor router), R10 (journal) | Scenario shows the mentor playing only other roles, the choice after four exchanges, and the debrief question | med | shipped 2026-10-21 tutor-simulate |
 
 ## Open decisions
-- D1: What is a production path, and where does the active-phase marker live (a file in `docs/planning/{ID}/`, or the task brief)? `exercises/` and test files are allowed. Answer by: R1 spike, then grill. Blocks R2.
 - D2: Does test-case ownership hand over gradually with progress, or is it fixed at "list cases, write one"? Answered 2026-10-21: fixed at "list cases, write one" for now; gradual handover waits for the journal (R10). Blocks R6 (now unblocked).
 
 
@@ -86,6 +85,8 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 - 2026-10-21 Decision: ideas from the credited sources are rewritten in this repo's own words and credited in the README; prompt text is not copied. The paper calls its approaches largely untested, so each new skill ships with evals.
 
 - 2026-10-21 Decision: six skills, not ten. `mentor-tutor` holds teach, quiz, challenge, audit and simulate as sibling files behind one description; the human handoff is Level 4 of `mentor-hint`. Skills follow `write-a-skill` from rshingleton/skills (the copy in that repo; a differing copy sits in cmdb-mcp).
+
+- 2026-10-21 Decision (D1): the phase guard protects only the paths its marker lists. The marker is `docs/planning/{ID}/phase-N/ACTIVE`, one path or glob per line, written by `mentor-scaffold` as its last step (seeded with the stub file) and deleted by `mentor-review` at sign-off; it is gitignored, and the hook reads every marker under `docs/planning/` and combines their paths. The apprentice ends the guard by deleting the marker; the hook denies the AI's own edits to any `ACTIVE` file; `mentor-review` journals a `skipped` line when it finds the marker already gone. Bash writes are a named limit, with no Bash heuristic for now. Unblocks R2.
 
 ## Changes
 - 2026-10-21: roadmap drafted from the credited-repo review.
@@ -114,3 +115,4 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 - 2026-10-21: R16 shipped as `tutor-audit`: `/mentor-tutor audit` is gated to concepts from a `phase-closed` phase, plants 2 to 3 flaws in `exercises/`, has the apprentice prove each with a failing test of their own, and checks the key by running; ADR 0001 records D5; `audit` scenario required for `mentor-tutor`.
 - 2026-10-21: R1 shipped as `phase-guard-spike`: ADR 0002 records that a plugin PreToolUse hook can deny production-path edits while a phase marker exists (checked by script and in a live session, bypass mode included), with limits: Bash writes bypass an Edit matcher, `disableAllHooks` turns the guard off, `MultiEdit` and `NotebookEdit` inputs untested. D1 now also asks how the hook finds the active phase and who owns the marker.
 - 2026-10-21: R17 shipped as `tutor-simulate`: `/mentor-tutor simulate` role-plays a stakeholder, incident or hostile-review scenario with the mentor in only the other roles, a consequential choice after four exchanges, and a debrief asking which concept was applied; `simulate` scenario required for `mentor-tutor`. All five tutor modes are built; M4 is complete.
+- 2026-10-21: D1 answered after the R1 spike and a grill (see Decisions so far); R2's Delivers and Verify rewritten to match, and its blockers reduced to R1, now shipped. R2 is ready.
