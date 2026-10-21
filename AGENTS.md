@@ -1,6 +1,6 @@
 # Working on this repo
 
-This repo ships five skills as Markdown and a Claude Code plugin manifest. It is not an application.
+This repo ships six skills as Markdown and a Claude Code plugin manifest. It is not an application.
 
 ## Layout
 

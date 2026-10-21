@@ -25,6 +25,7 @@ Tools that hand over complete implementations turn junior developers into review
 | `/mentor-hint` | Implementation | Tiered help: Level 1 concept, Level 2 pseudocode, Level 3 micro-step decomposition, Level 4 brief for a human senior |
 | `/mentor-diagnose` | Implementation | Walks you through a five-step debugging loop without patching the bug for you |
 | `/mentor-review` | Verification | Runs tests, lint and type-check, checks tests were not weakened, audits module design, asks one comprehension question |
+| `/mentor-tutor` | Any stage | Teaches a concept through leading questions and a teach-back, never the task's answer: `/mentor-tutor <mode> [topic]`, default teach; quiz, challenge, audit and simulate are not built yet |
 
 ## Install
 
@@ -97,7 +98,7 @@ CONTEXT.md        domain glossary (Ubiquitous Language)
 docs/adr/         architectural decision records (durable)
 docs/planning/    active task plans, one directory per ID
 docs/archive/     completed plans, moved to docs/archive/planning/{ID}/
-skills/           the five mentor-* skills
+skills/           the six mentor-* skills
 scripts/          install.sh and its test
 evals/            offline skill checks: routing cases, scenarios, transcript fixtures
 .claude-plugin/   plugin and marketplace manifests

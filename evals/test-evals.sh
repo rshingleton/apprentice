@@ -78,6 +78,21 @@ rm "$tmp/repo/evals/scenarios/mentor-hint/handoff.md"
 out="$(run)" && fail "a missing handoff scenario should fail"
 grep -q "no handoff scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 
+# 4e5. a missing tutor teach scenario and a missing tutor mode file fail
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-tutor/teach.md"
+out="$(run)" && fail "a missing teach scenario should fail"
+grep -q "no teach scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+fresh
+rm "$tmp/repo/skills/mentor-tutor/QUIZ.md"
+out="$(run)" && fail "a missing tutor mode file should fail"
+grep -q "no QUIZ.md mode file" <<<"$out" || fail "the failure should name the file: $out"
+
+fresh
+sed -i.bak 's/(QUIZ.md)/(quiz)/' "$tmp/repo/skills/mentor-tutor/SKILL.md"
+out="$(run)" && fail "an unlinked tutor mode file should fail"
+grep -q "does not link QUIZ.md" <<<"$out" || fail "the failure should name the link: $out"
+
 # 4f. a skill missing a required section, a skill at 100 lines and a description without Use when each fail the anatomy check
 fresh
 sed -i.bak '/^## Risks$/d' "$tmp/repo/skills/mentor-review/SKILL.md"
