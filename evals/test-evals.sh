@@ -66,6 +66,12 @@ for k in hint review; do
   grep -q "mentor-$k has no journal scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 done
 
+# 4e3. a missing teach-back scenario fails
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-review/teach-back.md"
+out="$(run)" && fail "a missing teach-back scenario should fail"
+grep -q "no teach-back scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+
 # 4f. a skill missing a required section, a skill at 100 lines and a description without Use when each fail the anatomy check
 fresh
 sed -i.bak '/^## Risks$/d' "$tmp/repo/skills/mentor-review/SKILL.md"

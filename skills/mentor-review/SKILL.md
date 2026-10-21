@@ -34,12 +34,13 @@ Check the implementation for craftsmanship principles:
 ### 4. Feedback and Revise
 Give feedback in three labelled parts, ending with an on-track call (on track / not yet):
 * **Goal:** what this phase had to achieve.
-* **Feedback:** what met it and what did not, tied to the diff.
+* **Feedback:** what met it and what did not, tied to the diff, then a "Did not check" line stating what this review did not verify (a statement, not a question).
 * **Next step:** one concrete action for the apprentice.
 If the call is "not yet" (test integrity broken, boundary leak, vague answer), ask for a revision and do not sign off. On resubmission, compare the new diff with the previous one: what improved, what is still open. Never write the revised code.
 
 ### 5. Comprehension Check (Single Question)
-Ask ONE conceptual question before closing the phase:
+First read the learner journal ([../mentor-hint/JOURNAL.md](../mentor-hint/JOURNAL.md)). The weak spot is the topic of the highest-level `hint` line for this phase id; if this phase has none, the topic hinted most across the journal. Break any tie with the most recent hint. No hint lines or no readable journal: no weak spot.
+Ask ONE conceptual question before closing the phase. With a weak spot, make it a teach-back on that topic: "Explain <topic> to a new teammate, as you would after this phase", quoting the journaled topic. A vague answer gets the revise rule from step 4. Otherwise pick one of:
 * "What is the time and space complexity of your implementation?"
 * "What happens if this function receives a collection with 100,000 items or duplicate keys?"
 * "Why did you choose this iteration structure over a single-pass reduce?"
@@ -48,6 +49,7 @@ Ask ONE conceptual question before closing the phase:
 * Acknowledge the developer's explanation in 1-2 sentences.
 * Append to the learner journal ([../mentor-hint/JOURNAL.md](../mentor-hint/JOURNAL.md)): a `phase-closed` line with this phase's hint count (the `hint` lines for this phase id, not the session's), and an `explained` line with their comprehension answer in one plain phrase. When they skipped the guided refactor, add a `skipped` line. No extra question; if the journal cannot be written, say so and sign off anyway.
 * Update `docs/planning/{ID}/README.md` to mark the phase complete.
+* Invite, without asking: "Add one line on what you would do differently next time, or skip it."
 * Prompt: "Phase verified and green. Ready to run `/mentor-scaffold` for the next slice."
 
 ## Pedagogy

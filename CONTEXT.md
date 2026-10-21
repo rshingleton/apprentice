@@ -13,7 +13,9 @@ Domain terms used across the skills and docs.
 | **Red** | The state where the new test suite fails cleanly because the logic is missing. |
 | **Stub** | A typed signature with a docstring and pseudocode whose body throws an unimplemented error. |
 | **Hint ladder** | The three escalating levels of help: Concept, Pseudocode, Decomposition. |
-| **Comprehension gate** | The single conceptual question `/mentor-review` asks before a phase closes. |
+| **Comprehension gate** | The single conceptual question `/mentor-review` asks before a phase closes. With a weak spot it is a teach-back on that topic. |
+| **Weak spot** | The topic the apprentice needed the most help with, read from the learner journal: the highest-level hint for the phase, else the most-hinted topic, ties to the most recent. |
+| **Teach-back** | The closing question phrased as "explain it to a new teammate", so the apprentice shows understanding in their own words. |
 | **Learner journal** | The apprentice's personal, append-only record at `~/.apprentice/journal.md` (or `$APPRENTICE_JOURNAL`): a Profile of their experience and prior knowledge, then one line per event. Never committed. |
 | **Hint log** | The `hint` and `phase-closed` lines of the learner journal: each hint's level, phase and topic, and the hints a phase closed with. |
 | **Deep module** | A module whose small, stable interface hides substantial internal complexity. |
