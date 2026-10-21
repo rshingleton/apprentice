@@ -21,7 +21,7 @@ Every `SKILL.md` has, in this order:
 - `## Risks`: how the apprentice could outsource their thinking, or the mentor leak a solution, and the counter.
 - `## Apprentice in charge`: which steps they may skip or end, and which they may not.
 
-Process steps are skippable, and the skip is journaled once the learner journal ships. Test integrity and the comprehension gate are never skippable.
+Process steps are skippable, and the skill that writes the learner journal journals the skip (today `mentor-review`; the other skills join as they gain journal writes). Test integrity and the comprehension gate are never skippable.
 
 A skill that outgrows 100 lines moves detail into a sibling file, linked one level deep. A new mode is a sibling file inside an existing skill, not a new skill, unless it has its own trigger phrase in `evals/routing.tsv`. `evals/run.sh` checks the description, the length and the three sections.
 

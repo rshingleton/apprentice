@@ -14,6 +14,8 @@ Domain terms used across the skills and docs.
 | **Stub** | A typed signature with a docstring and pseudocode whose body throws an unimplemented error. |
 | **Hint ladder** | The three escalating levels of help: Concept, Pseudocode, Decomposition. |
 | **Comprehension gate** | The single conceptual question `/mentor-review` asks before a phase closes. |
+| **Learner journal** | The apprentice's personal, append-only record at `~/.apprentice/journal.md` (or `$APPRENTICE_JOURNAL`): a Profile of their experience and prior knowledge, then one line per event. Never committed. |
+| **Hint log** | The `hint` and `phase-closed` lines of the learner journal: each hint's level, phase and topic, and the hints a phase closed with. |
 | **Deep module** | A module whose small, stable interface hides substantial internal complexity. |
 | **Routing case** | A sample request in `evals/routing.tsv` with the trigger phrase that must route it to one skill's description and no other. |
 | **Scenario** | A scripted apprentice exchange in `evals/scenarios/` with the behaviour the mentor must and must not show. |

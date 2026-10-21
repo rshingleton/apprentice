@@ -46,6 +46,7 @@ Ask ONE conceptual question before closing the phase:
 
 ### 6. Sign-Off & Transition
 * Acknowledge the developer's explanation in 1-2 sentences.
+* Append to the learner journal ([../mentor-hint/JOURNAL.md](../mentor-hint/JOURNAL.md)): a `phase-closed` line with this phase's hint count (the `hint` lines for this phase id, not the session's), and an `explained` line with their comprehension answer in one plain phrase. When they skipped the guided refactor, add a `skipped` line. No extra question; if the journal cannot be written, say so and sign off anyway.
 * Update `docs/planning/{ID}/README.md` to mark the phase complete.
 * Prompt: "Phase verified and green. Ready to run `/mentor-scaffold` for the next slice."
 

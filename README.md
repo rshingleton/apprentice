@@ -77,6 +77,7 @@ Use the plugin or the installer, not both.
 - **Privacy:** do not paste secrets, credentials or proprietary code into a session where your organisation's policy forbids sharing them with a model.
 - **Prompt-enforced:** the rule that the AI writes no production logic is carried by the skills' instructions. Nothing in the tool blocks an edit yet.
 - **Not run against a model:** the evals check structure and scripted expectations only, so a skill can pass them and still behave differently on a given model.
+- **Learner journal:** `mentor-hint` and `mentor-review` keep a personal journal of your level, hints and answers at `~/.apprentice/journal.md` (or `$APPRENTICE_JOURNAL`). It sits outside every repository, is never committed, and deleting the file resets it.
 - **Model output can be wrong:** hints and reviews may be mistaken or confidently misleading. Check them against the code and the documentation.
 - **You are in charge:** you may skip a process step or end a session. Test integrity and the comprehension question stay in place.
 

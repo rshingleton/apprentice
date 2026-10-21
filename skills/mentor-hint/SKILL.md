@@ -34,6 +34,9 @@ Trigger: The developer tried Level 2 but remains blocked.
 * Instruct them to solve only the first half (e.g., "Write just the validation guard on lines 10-12 and run the test suite to observe the failure output shift.").
 * Refuse requests to "just provide the answer."
 
+## Journal
+Read the journal first. After each hint, append a `hint` line (level, phase, topic) per [JOURNAL.md](JOURNAL.md); take the phase id from the task brief's directory (`<task id>/phase-N`) and the project from the repo name. When the Profile is empty, ask their experience and prior knowledge once, in one question, before the first hint. Journaling never blocks a hint.
+
 ## Pedagogy
 Minimal help keeps the apprentice constructing the answer; each level gives only enough to unblock the next attempt.
 

@@ -58,6 +58,14 @@ rm "$tmp/repo/evals/scenarios/mentor-plan/habits.md"
 out="$(run)" && fail "a missing habits scenario should fail"
 grep -q "no habits scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 
+# 4e2. a missing journal scenario fails, for the hint and the review skill
+for k in hint review; do
+  fresh
+  rm "$tmp/repo/evals/scenarios/mentor-$k/journal.md"
+  out="$(run)" && fail "a missing mentor-$k journal scenario should fail"
+  grep -q "mentor-$k has no journal scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+done
+
 # 4f. a skill missing a required section, a skill at 100 lines and a description without Use when each fail the anatomy check
 fresh
 sed -i.bak '/^## Risks$/d' "$tmp/repo/skills/mentor-review/SKILL.md"

@@ -74,6 +74,9 @@ for s in "${skills[@]}"; do
   [ "$s" != mentor-hint ] || [ -f "$dir/misconception.md" ] || fail "scenarios: $s has no misconception scenario"
   [ "$s" != mentor-plan ] || [ -f "$dir/habits.md" ] || fail "scenarios: $s has no habits scenario"
   [ "$s" != mentor-scaffold ] || [ -f "$dir/cases.md" ] || fail "scenarios: $s has no cases scenario"
+  case "$s" in mentor-hint|mentor-review)
+    [ -f "$dir/journal.md" ] || fail "scenarios: $s has no journal scenario" ;;
+  esac
   case "$s" in mentor-scaffold|mentor-diagnose)
     [ -f "$dir/predict.md" ] || fail "scenarios: $s has no predict scenario" ;;
   esac
@@ -85,7 +88,7 @@ for f in "$evals"/scenarios/*/*.md; do
   [ -f "$f" ] || continue
   kind="$(basename "$f" .md)"; skill="$(basename "$(dirname "$f")")"
   [ "$(field "$f" skill)" = "$skill" ] || fail "scenarios: $f skill does not match its directory"
-  case "$kind" in ask-for-answer|typical-mistake|predict|misconception|cases|habits|great|middling|poor) ;; *) fail "scenarios: $f has an unknown kind" ;; esac
+  case "$kind" in ask-for-answer|typical-mistake|predict|misconception|cases|habits|journal|great|middling|poor) ;; *) fail "scenarios: $f has an unknown kind" ;; esac
   [ "$(field "$f" kind)" = "$kind" ] || fail "scenarios: $f kind does not match its filename"
   for sec in Script Expect; do
     awk -v sec="## $sec" '$0 == sec { on = 1; next } /^## / { on = 0 } on && NF { n++ } END { exit n == 0 }' "$f" \
