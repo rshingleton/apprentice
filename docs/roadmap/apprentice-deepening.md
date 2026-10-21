@@ -17,7 +17,6 @@ An apprentice using the framework is kept from outsourcing their thinking. The "
 - G7: Planning teaches reuse-before-write and an AI-versus-manual choice, and the apprentice authors the criteria and the pre-mortem.
 - G8: Every skill states its pedagogy, its risks and how the apprentice stays in charge, from one shared anatomy.
 - G9: The apprentice practises critical evaluation of AI output and challenge of their own decisions, with answers checkable by running code.
-- G10: The tutor's explanations are grounded in verified local reference cards that cite primary sources, so it cites a card or admits a gap instead of improvising.
 
 ## Milestones
 
@@ -43,15 +42,14 @@ Exit: a scripted run of the sample kata shows the predict prompt, the case-listi
 | R9 | build | Task brief gains "Likely misconceptions"; `mentor-hint` targets a listed one at Level 1 | G2 | R3 (evals) | Scenario where the apprentice makes a listed mistake: Level 1 hint names the concept, not the fix | med | shipped 2026-10-21 likely-misconceptions |
 
 ### M3: Remember and escalate
-Exit: after a scripted phase with two hints, the tutor cites a reference card for a concept, the journal records them with the apprentice's level, review asks a question tied to them and closes with a teach-back, `mentor-tutor` teaches a concept without solving the task, and `mentor-hint` Level 4 produces a brief.
+Exit: after a scripted phase with two hints, the journal records them with the apprentice's level, review asks a question tied to them and closes with a teach-back, `mentor-tutor` teaches a concept without solving the task, and `mentor-hint` Level 4 produces a brief.
 
 | Slice | Kind | Delivers | Covers | Blocked by | Verify | Risk | Status |
 |-------|------|----------|--------|------------|--------|------|--------|
 | R10 | build | Hint log and learner journal (level, prior knowledge, hints per phase, unaided debugging, explain-the-diff answers) written by `mentor-hint` and `mentor-review` | G4 | R3 (evals), D3 (location, committed or not) | After two hints in a scenario the journal lists both with level and phase | med | shipped 2026-10-21 learner-journal |
 | R11 | build | Review uses the journal: "what I did not check" line, a question aimed at the recorded weak spot, teach-back gate ("explain it to a new teammate"), a short reflection | G4 | R10 (journal), R7 (review structure) | Scenario's closing question references a journaled hint and asks for a teach-back | low | shipped 2026-10-21 review-uses-journal |
-| R12 | build | `mentor-hint` Level 4, human handoff: a brief for a human senior (goal, tried, hints used, the question), offered after Level 3 fails | G3 | R10 (hint log) | Scenario that fails Level 3 ends in a brief with the four parts and no solution code | low | |
+| R12 | build | `mentor-hint` Level 4, human handoff: a brief for a human senior (goal, tried, hints used, the question), offered after Level 3 fails | G3 | R10 (hint log) | Scenario that fails Level 3 ends in a brief with the four parts and no solution code | low | shipped 2026-10-21 hint-handoff |
 | R13 | build | `mentor-tutor` core: a router (`/mentor-tutor <mode> [topic]` with mode one of teach, quiz, challenge, audit or simulate; default teach), the shared rules in `SKILL.md`, and `TEACH.md`: intake (topic, level, prior knowledge), analogies pitched to level, a leading question each turn, teach-back close; concepts only | G3 | R3 (evals), R10 (level profile), D4 (where explaining ends) | Asked for the task's answer it declines and asks a leading question; the typical-mistake scenario is corrected by a question; at most 3 lines of code per reply; each mode argument routes to its own file | med | |
-| R18 | build | Reference cards in `skills/mentor-tutor/references/`: an index plus about ten cards (complexity and data-structure choice, testing and test doubles, naming and small functions, error handling, debugging method, HTTP and REST basics, SQL basics, git workflow, OOP versus functional, security basics). Each card: summary in our own words, primary sources, 3-4 misconceptions, 2-3 check questions, last-verified date. `TEACH.md` cites a card or says the topic is not covered | G10 | R13 (tutor core), R3 (evals), D7 (topics and verifier) | Eval check: every card has sources, a verified date and stays under 40 lines; scenario on a covered topic cites the card, on an uncovered topic says it is not in the references | med | |
 
 ### M4: Practise and challenge
 Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate) once and the evals pass. No new skill directory is added in this milestone.
@@ -66,12 +64,10 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 ## Open decisions
 - D1: What is a production path, and where does the active-phase marker live (a file in `docs/planning/{ID}/`, or the task brief)? `exercises/` and test files are allowed. Answer by: R1 spike, then grill. Blocks R2.
 - D2: Does test-case ownership hand over gradually with progress, or is it fixed at "list cases, write one"? Answered 2026-10-21: fixed at "list cases, write one" for now; gradual handover waits for the journal (R10). Blocks R6 (now unblocked).
-- D4: Where does explaining a concept end and leaking a solution begin? Recommended: concepts and general patterns only, never this task's logic. Answer by: grill. Blocks R13.
-- D5: Does AI-supplied exercise code count as production logic under the invariant? Recommended: no, if it lives only in `exercises/`, is never imported by `src/`, and is deleted after the exercise. Answer by: grill, then an ADR. Blocks R16.
 
-- D7: Which topics come first, and who verifies each card against its primary source? Recommended: the owner picks the ten from the team's common review comments; the AI drafts with `look-it-up`; the owner spot-checks before a card is marked verified. Answer by: grill. Blocks R18.
 
 ## Fog
+- Ground the tutor's explanations in local material instead of the model's memory: first the repo's own mapped code (`map-it`, `docs/reference/`) where it holds similar concepts, else common patterns tied to the work at hand. The earlier idea of verified reference cards with primary-source citations (about ten, with a verifier) is parked here, to revisit once the tutor shows where it gets things wrong.
 - Help budgets and AI-tool graduation that widen with demonstrated progress (needs R10 and its metrics).
 - A code-reading exercise before editing an unfamiliar module.
 - A retro at epic close.
@@ -107,3 +103,8 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 - 2026-10-21 Decision (D3): the learner journal is never committed. It lives in a gitignored location, either at the skill's base directory or under `$HOME`; R10 picks the default and the lookup order. Unblocks R10.
 - 2026-10-21: R10 shipped as `learner-journal`: `mentor-hint` logs each hint and asks for the apprentice's experience once; `mentor-review` records the phase's hint count, the explained answer and a skipped guided refactor; the format and path (`$APPRENTICE_JOURNAL`, else `~/.apprentice/journal.md`) live in `skills/mentor-hint/JOURNAL.md`; `journal` scenarios required for hint and review. Other skills do not write the journal yet.
 - 2026-10-21: R11 shipped as `review-uses-journal`: `mentor-review` reads the learner journal, states a "Did not check" line, and makes its single closing question a teach-back on the apprentice's weak spot (generic question as the fallback); the sign-off invites an optional one-line reflection, not journaled; `teach-back` scenario required for `mentor-review`.
+- 2026-10-21 Decision (D4): the tutor explains concepts and general patterns only, never this task's logic. Unblocks R13.
+- 2026-10-21 Decision (D5): AI-supplied exercise code does not count as production logic, on the recommended terms: it lives only in `exercises/`, is never imported by `src/`, and is deleted after the exercise. R16 records this in an ADR. Unblocks R16.
+- 2026-10-21 Decision (D7): R18, the reference cards, and G10 are deferred to Fog. The tutor explains concepts and general patterns (D4); where it needs grounding it uses the repo's own mapped code, else common patterns related to the work at hand. This supersedes the earlier link-first-cards decision for now.
+- 2026-10-21: R18 and D7 removed from M3 and Open decisions; G10 moved to Fog; the M3 exit no longer mentions a reference card.
+- 2026-10-21: R12 shipped as `hint-handoff`: `mentor-hint` Level 4 offers, after Level 3 is tried, a brief for a human senior (Goal, Tried, Hints used, The question) with no solution code, printed in chat and not journaled; `handoff` scenario required for `mentor-hint`.

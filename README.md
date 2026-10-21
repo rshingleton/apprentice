@@ -9,7 +9,7 @@ Tools that hand over complete implementations turn junior developers into review
 - **Primary invariant:** the AI does not write production business logic or function bodies.
 - **Automated scaffolding:** test suites, fixtures, mocks, assertion matrices and typed stubs are generated for you.
 - **Hands-on execution:** you write the code that makes the failing tests pass.
-- **Socratic guidance:** help is metered through a ladder (Concept, Pseudocode, Decomposition), never a full solution.
+- **Socratic guidance:** help is metered through a ladder (Concept, Pseudocode, Decomposition, then a brief for a human), never a full solution.
 - **Comprehension gates:** before a phase closes, you answer one conceptual question about complexity, edge cases or trade-offs.
 
 ## Lifecycle
@@ -22,7 +22,7 @@ Tools that hand over complete implementations turn junior developers into review
 |---------|-------|--------------|
 | `/mentor-plan` | Planning | Interviews you one question at a time, decomposes the work into vertical slices, writes `docs/planning/{ID}/` and a proposed ADR |
 | `/mentor-scaffold` | Scaffolding | Writes the failing test suite (Red) and a stubbed interface with pseudocode that throws an unimplemented error |
-| `/mentor-hint` | Implementation | Tiered help: Level 1 concept, Level 2 pseudocode, Level 3 micro-step decomposition |
+| `/mentor-hint` | Implementation | Tiered help: Level 1 concept, Level 2 pseudocode, Level 3 micro-step decomposition, Level 4 brief for a human senior |
 | `/mentor-diagnose` | Implementation | Walks you through a five-step debugging loop without patching the bug for you |
 | `/mentor-review` | Verification | Runs tests, lint and type-check, checks tests were not weakened, audits module design, asks one comprehension question |
 

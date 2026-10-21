@@ -12,7 +12,8 @@ Domain terms used across the skills and docs.
 | **Scaffold** | The generated test harness, fixtures, mocks and interface stubs for a phase. |
 | **Red** | The state where the new test suite fails cleanly because the logic is missing. |
 | **Stub** | A typed signature with a docstring and pseudocode whose body throws an unimplemented error. |
-| **Hint ladder** | The three escalating levels of help: Concept, Pseudocode, Decomposition. |
+| **Hint ladder** | The escalating levels of help: three of AI help (Concept, Pseudocode, Decomposition), then Level 4, a handoff to a human. |
+| **Handoff brief** | The Level 4 note for a human senior: Goal, Tried, Hints used and The question. It holds no solution code. |
 | **Comprehension gate** | The single conceptual question `/mentor-review` asks before a phase closes. With a weak spot it is a teach-back on that topic. |
 | **Weak spot** | The topic the apprentice needed the most help with, read from the learner journal: the highest-level hint for the phase, else the most-hinted topic, ties to the most recent. |
 | **Teach-back** | The closing question phrased as "explain it to a new teammate", so the apprentice shows understanding in their own words. |
