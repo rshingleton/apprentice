@@ -37,14 +37,28 @@ Tools that hand over complete implementations turn junior developers into review
 
 Plugin skills are namespaced, for example `/apprentice:mentor-plan`.
 
-**Symlink install** (skills link inside `skills/`, so they keep working):
+**Installer** (symlinks the skills into `~/.claude/skills` and `~/.agents/skills`):
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/rshingleton/apprentice/main/scripts/install.sh)
+```
+
+It clones the repo into `~/.local/share/apprentice` (or pulls it when the clone is there), then links from the clone; re-run it to update. Set `APPRENTICE_REPO` to clone from another URL, such as the SSH one, and `APPRENTICE_HOME` to use another clone directory.
+
+From a clone:
 
 ```sh
 git clone git@github.com:rshingleton/apprentice.git ~/.local/share/apprentice
-ln -s ~/.local/share/apprentice/skills/mentor-* ~/.claude/skills/
+~/.local/share/apprentice/scripts/install.sh            # link the skills
+~/.local/share/apprentice/scripts/install.sh --dry-run  # show what it would do
+~/.local/share/apprentice/scripts/install.sh --force    # replace entries that are not ours
+~/.local/share/apprentice/scripts/install.sh --uninstall
+~/.local/share/apprentice/scripts/install.sh -h           # usage
 ```
 
-Use the plugin or the symlinks, not both.
+It leaves any existing entry that is not its own link alone unless `--force` is given. A link made from a different clone path counts as not its own, so after moving the clone run `--uninstall` from the old one, or install with `--force`. `scripts/test-install.sh` checks the installer against a temporary `HOME`.
+
+Use the plugin or the installer, not both.
 
 ## Usage
 
@@ -62,6 +76,7 @@ docs/adr/         architectural decision records (durable)
 docs/planning/    active task plans, one directory per ID
 docs/archive/     completed plans, moved to docs/archive/planning/{ID}/
 skills/           the five mentor-* skills
+scripts/          install.sh and its test
 .claude-plugin/   plugin and marketplace manifests
 ```
 
