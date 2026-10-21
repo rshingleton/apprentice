@@ -100,7 +100,8 @@ docs/adr/         architectural decision records (durable)
 docs/planning/    active task plans, one directory per ID
 docs/archive/     completed plans, moved to docs/archive/planning/{ID}/
 skills/           the six mentor-* skills
-scripts/          install.sh and its test
+hooks/            the phase-guard PreToolUse hook (plugin only)
+scripts/          install.sh, test-install.sh and test-phase-guard.sh
 evals/            offline skill checks: routing cases, scenarios, transcript fixtures
 .claude-plugin/   plugin and marketplace manifests
 ```
