@@ -40,7 +40,7 @@ Exit: a scripted run of the sample kata shows the predict prompt, the case-listi
 | R6 | build | Test-case ownership in `mentor-scaffold`: apprentice lists edge cases first and writes at least one test | G2 | R3 (evals), D2 (how much to hand over) | Scenario shows the apprentice's cases requested and the AI adding only the missing ones | med | |
 | R7 | build | `mentor-review`: guided refactor after green; feedback as goal, feedback, next step, with an on-track call; revise-and-resubmit with a before/after comparison | G5 | R3 (evals) | Scenario with a poor submission: three-part feedback, a revise request, second pass compares versions; no AI-written code | med | |
 | R8 | build | `mentor-plan` habits: reuse ladder, stated assumptions, AI-versus-manual choice, apprentice-authored criteria, pre-mortem table holding only the apprentice's words | G7 | R3 (evals) | Scenario shows the reuse questions asked, the AI critiquing not writing the criteria, and a pre-mortem table with no AI text | low | |
-| R9 | build | Task brief gains "Likely misconceptions"; `mentor-hint` targets a listed one at Level 1 | G2 | R3 (evals) | Scenario where the apprentice makes a listed mistake: Level 1 hint names the concept, not the fix | med | |
+| R9 | build | Task brief gains "Likely misconceptions"; `mentor-hint` targets a listed one at Level 1 | G2 | R3 (evals) | Scenario where the apprentice makes a listed mistake: Level 1 hint names the concept, not the fix | med | shipped 2026-10-21 likely-misconceptions |
 
 ### M3: Remember and escalate
 Exit: after a scripted phase with two hints, the tutor cites a reference card for a concept, the journal records them with the apprentice's level, review asks a question tied to them and closes with a teach-back, `mentor-tutor` teaches a concept without solving the task, and `mentor-hint` Level 4 produces a brief.
@@ -100,3 +100,4 @@ Exit: a scripted session runs each tutor mode (quiz, challenge, audit, simulate)
 - 2026-10-21: consolidated to avoid sprawl: R14-R17 became tutor modes blocked by R13; R12 became hint Level 4; R4 adopts the write-a-skill conventions.
 - 2026-10-21: R3 shipped as `evals-harness`: `evals/run.sh` and `evals/test-evals.sh`; scenarios are structure-checked only, not run against a model.
 - 2026-10-21: R5 shipped as `predict-before-run`: `mentor-scaffold` and `mentor-diagnose` ask for a prediction before the first run; `predict` scenarios are required for both.
+- 2026-10-21: R9 shipped as `likely-misconceptions`: task briefs list likely misconceptions; `mentor-hint` Level 1 names a matching concept, not the fix; `misconception` scenario required for `mentor-hint`.

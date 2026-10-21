@@ -40,6 +40,12 @@ rm "$tmp/repo/evals/scenarios/mentor-scaffold/predict.md"
 out="$(run)" && fail "a missing predict scenario should fail"
 grep -q "no predict scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 
+# 4c. a missing misconception scenario fails
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-hint/misconception.md"
+out="$(run)" && fail "a missing misconception scenario should fail"
+grep -q "no misconception scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+
 # 5. no bad fixtures, a missing typical-mistake scenario and a fenced "Mentor:" line each fail
 fresh
 rm "$tmp/repo"/evals/fixtures/bad-*.md

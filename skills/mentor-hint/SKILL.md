@@ -18,7 +18,8 @@ Socratic Pair Coach. Helps developers solve their own problems through minimal v
 
 ### Level 1: Algorithmic & Data Structure Direction (Default)
 Trigger: The developer asks how to start or what approach to take.
-* Name the data structure, pattern, or standard library utility suited to the problem.
+* Read the task brief's "Likely misconceptions". If the apprentice's attempt matches a listed one, name that concept and why it matters; do not state the fix.
+* No match, or a brief with no such section: name the data structure, pattern, or standard library utility suited to the problem.
 * Explain *why* it works in 1-2 sentences.
 * Example: "Instead of searching the list in a loop, consider loading the keys into a Set first so membership checks take O(1) time."
 

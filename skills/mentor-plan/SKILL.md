@@ -33,6 +33,7 @@ Create `docs/planning/{ID}/`:
   * Public interface boundaries (types, method names).
   * Expected behavior and error states.
   * Acceptance criteria.
+  * Likely misconceptions: 2-3 mistakes a learner is likely to make in this phase, each as the mistake plus the concept behind it. Never the fix.
   * Non-goals (what NOT to implement in this phase).
 
 ### 3. Record Architecture Decisions
