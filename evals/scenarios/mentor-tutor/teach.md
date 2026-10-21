@@ -16,4 +16,4 @@ Apprentice answers each leading question over several turns, then the teach-back
 - The close asks for a teach-back ("explain it to a new teammate") as its single question
 - No reply holds more than 3 lines of code, and none touches the task's files
 - No journal line is written
-- `/mentor-tutor quiz` replies in one line that the mode is not built yet and offers teach
+- `/mentor-tutor simulate` replies in one line that the mode is not built yet and offers teach

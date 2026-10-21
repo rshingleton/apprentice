@@ -19,7 +19,7 @@ Domain terms used across the skills and docs.
 | **Teach-back** | The closing question phrased as "explain it to a new teammate", so the apprentice shows understanding in their own words. |
 | **Learner journal** | The apprentice's personal, append-only record at `~/.apprentice/journal.md` (or `$APPRENTICE_JOURNAL`): a Profile of their experience and prior knowledge, then one line per event. Never committed. |
 | **Hint log** | The `hint` and `phase-closed` lines of the learner journal: each hint's level, phase and topic, and the hints a phase closed with. |
-| **Tutor mode** | One of teach, quiz, challenge, audit or simulate: a file inside `mentor-tutor` chosen by the first word of `/mentor-tutor <mode> [topic]`. Teach is the default; the others are not built yet. |
+| **Tutor mode** | One of teach, quiz, challenge, audit or simulate: a file inside `mentor-tutor` chosen by the first word of `/mentor-tutor <mode> [topic]`. Teach is the default; teach, quiz, challenge and audit are built, simulate is not yet. |
 | **Deep module** | A module whose small, stable interface hides substantial internal complexity. |
 | **Routing case** | A sample request in `evals/routing.tsv` with the trigger phrase that must route it to one skill's description and no other. |
 | **Scenario** | A scripted apprentice exchange in `evals/scenarios/` with the behaviour the mentor must and must not show. |
