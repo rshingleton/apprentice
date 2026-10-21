@@ -52,6 +52,12 @@ rm "$tmp/repo/evals/scenarios/mentor-scaffold/cases.md"
 out="$(run)" && fail "a missing cases scenario should fail"
 grep -q "no cases scenario" <<<"$out" || fail "the failure should name the scenario: $out"
 
+# 4e. a missing habits scenario fails
+fresh
+rm "$tmp/repo/evals/scenarios/mentor-plan/habits.md"
+out="$(run)" && fail "a missing habits scenario should fail"
+grep -q "no habits scenario" <<<"$out" || fail "the failure should name the scenario: $out"
+
 # 5. no bad fixtures, a missing typical-mistake scenario and a fenced "Mentor:" line each fail
 fresh
 rm "$tmp/repo"/evals/fixtures/bad-*.md

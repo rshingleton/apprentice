@@ -24,6 +24,9 @@ Interview the apprentice to refine their mental model of the feature:
 * "What is the smallest vertical slice we can build first that touches end-to-end data?"
 * "What inputs, outputs, and edge cases do we need to guard against?"
 * "What existing modules, interfaces, or domain terms in CONTEXT.md will this affect?"
+* Reuse first: "Does this need to exist? Is it already in the codebase, the standard library or an installed dependency?"
+* Assumptions: "What are you assuming that you have not checked?" The apprentice states them; record them in the README.
+* AI or manual: for each phase, ask whether they will do it by hand or with AI help, and why.
 Proceed one question at a time. If the apprentice is unsure, propose two viable paths and ask them to pick based on trade-offs.
 
 ### 2. Scaffold the Plan Directory
@@ -32,9 +35,12 @@ Create `docs/planning/{ID}/`:
 * `phase-N/task-brief.md`: Detailed specifications for each phase, listing:
   * Public interface boundaries (types, method names).
   * Expected behavior and error states.
-  * Acceptance criteria.
+  * Acceptance criteria: written by the apprentice. The mentor critiques them (missing, vague or untestable) and never writes them.
   * Likely misconceptions: 2-3 mistakes a learner is likely to make in this phase, each as the mistake plus the concept behind it. Never the fix.
   * Non-goals (what NOT to implement in this phase).
 
-### 3. Record Architecture Decisions
+### 3. Pre-mortem
+Ask: "Imagine this phase failed. What went wrong?" Put the answers in a table in the README (Risk, Early sign, Response), using only the apprentice's own words. The mentor may ask what is missing; it adds no rows.
+
+### 4. Record Architecture Decisions
 Draft `docs/adr/{ID}-short-title.md` with status `Proposed`, outlining the context, choices evaluated, and trade-offs.
