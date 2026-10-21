@@ -1,0 +1,7 @@
+{
+  "name": "apprentice",
+  "version": "0.1.0",
+  "description": "An AI mentorship framework: the AI scaffolds tests and stubs and coaches, the developer writes the production code.",
+  "author": { "name": "rshingleton" },
+  "skills": "./skills"
+}

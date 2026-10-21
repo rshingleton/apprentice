@@ -1,0 +1,11 @@
+{
+  "name": "apprentice",
+  "owner": { "name": "rshingleton" },
+  "plugins": [
+    {
+      "name": "apprentice",
+      "source": "./",
+      "description": "An AI mentorship framework: the AI scaffolds tests and stubs and coaches, the developer writes the production code."
+    }
+  ]
+}
